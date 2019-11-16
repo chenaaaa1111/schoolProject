@@ -8,12 +8,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css';
 import router from './router'
 import { Tab, Tabs } from 'vant';
-
+import { Image } from 'vant';
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(Tab);
-Vue.use(Tabs)
+Vue.use(Tabs);
+Vue.use(Image)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

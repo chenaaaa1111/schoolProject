@@ -15,6 +15,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+.pd_40{
+  padding-left: 40px;
+}
 ul{
   list-style: none;
 }

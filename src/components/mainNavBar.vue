@@ -1,32 +1,209 @@
 <template>
-    <div class="mainNavBar">
-        <!-- <ul class="mnavbar">
-           <li v-for=" item in dataList">
-                {{item.text}}
-           </li>
-        </ul> -->
-        <van-tabs>
-            <van-tab v-for="item in dataList" :title="'标签 '+item.id" key="item.id">
-              内容 {{ item.text }}
-            </van-tab>
-          </van-tabs>
-    </div>
+  <div id="mainNavBar">
+      <div class="mainNavBar">
+          <!-- <ul class="mnavbar">
+                 <li v-for=" item in dataList">
+                      {{item.text}}
+                 </li>
+              </ul> -->
+          <div class="tabContainer">
+            <div class="leftBar">
+              <van-tabs>
+                <van-tab v-for="item in dataList" :title="item.text" :key="item.id">
+                  <ul>
+                        <li v-for="item in contentList">
+                           <h4 class="title">{{item.title}} <span class="titleMsg">栏目（影评）</span> </h4>
+                           <div class="pd_40">
+                              <van-image
+                              round
+                              width="32px"
+                              height="32px"
+                              fit="cover"
+                              src="https://img.yzcdn.cn/vant/cat.jpeg"
+                            />
+                             <span class="imgMessage">清江月明</span>
+                             <span class="imgMessage linkFont">王府水晶</span>
+
+                           </div>
+                            <div class="content" :id="'content'+item.id" >
+                                <div class="leftImage">
+                                    <img src="https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1970667282,1217984340&fm=85&s=1D44C91206427F5319829BFE0300A02D" alt="">
+                                </div>
+                                <div class="rightContent">
+                                  <span>
+                                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                  </span>
+                                  <span @click="changShow(item.id)" class="updown">
+                                    查看更多
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="deatail" style="display: none;" :id="'detail'+item.id"  >
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                                <span @click="fslip(item.id)" class="updown">
+                                    收起
+                                  </span>
+                            </div>
+                        </li>
+                    </ul>
+                </van-tab>
+              </van-tabs>
+      
+            </div>
+            <!-- <div class="rightBar">
+              <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                <el-submenu index="2">
+                  <template slot="title" style="line-height: 44px;">更多</template>
+                  <el-menu-item index="2-1">选项1</el-menu-item>
+                  <el-menu-item index="2-2">选项2</el-menu-item>
+                  <el-menu-item index="2-3">选项3</el-menu-item>          
+                </el-submenu>
+              </el-menu>
+            </div> -->
+          </div>
+      
+        </div>
+  </div>
+  
 </template>
+<style>
+    #mainNavBar .el-menu--horizontal>.el-submenu .el-submenu__title{
+      line-height: 44px;
+      height: 44px; 
+
+    }
+    .linkFont{
+      color: #034692;
+    }
+    .van-image--round{
+      vertical-align: middle;
+    }
+    .titleMsg{
+      color: #666;
+      font-size: 20px;
+      margin-left: 30px;
+    }
+    .rightBar {
+    width: 100px;
+    margin-left: 40px;
+    line-height: 44px;
+      height: 44px; 
+
+  }
+  
+  .deatail{
+    display: flex;
+    padding-top: 30px;
+    padding-left: 40px;
+    font-size: 18px;
+  }
+  .content{
+    display: flex;
+    padding-top: 30px;
+    padding-left: 40px;
+    font-size: 18px;
+  }
+</style>
+<style scoped >
+  .leftImage img{
+    width: 240px;
+    height: 136px;
+  }
+  .imgMessage{
+    font-size: 18px;
+  }
+  .title{
+    padding-left: 40px;
+    font-size: 24px;
+    font-weight: 900;
+    padding-top: 30px;
+  }
+  .updown{
+    color: #034692;
+  }
+ .rightContent{
+   margin-left: 30px;
+ }
+  .tabContainer {
+    display: flex;
+  }
+
+  .leftBar {
+    flex: 1;
+  }
+
+
+ 
+  body{
+    background: #000;
+  }
+ 
+</style>
 <script>
   // import 'vant/lib/button/style';
-  
-    export default {
-      name: 'mainNavBar',
-      data () {
-        return {
-          active:1,
-          dataList:[{text:'全部',id:'all'},{text:'最新',id:'1'},
-      {text:'就业',id:'2'},{text:'专业',id:'3'},{text:'辅导',id:'4'},{text:'辅导班',id:'5'}]
-        }
-      },
-      comments:{
-       
+
+  export default {
+    name: 'mainNavBar',
+    data() {
+      return {
+        active: 1,
+        dataList: [{ text: '全部', id: 'all' }, { text: '最新', id: '1' },
+        { text: '就业', id: '2' }, { text: '专业', id: '3' }, { text: '辅导', id: '4' }, { text: '辅导班', id: '5' }],
+        contentList:[
+            {
+                "id": 4,
+                "columns": 1,
+                "column_name": "",
+                "name": "姓名",
+                "avatar": "https:\/\/www.i2f2f.com\/attachment\/images\/26\/2019\/04\/giXIQxrG74ZXPnLnnFxnd4Rn0QpCFP.jpg",
+                "title": "标题",
+                "image": "https:\/\/www.i2f2f.com\/attachment\/images\/26\/2019\/04\/giXIQxrG74ZXPnLnnFxnd4Rn0QpCFP.jpg",
+                "content": "",
+                "create_time": "2019-11-29 00:00:00"
+            },
+            {
+                "id": 5,
+                "columns": 2,
+                "column_name": "",
+                "name": "12321312",
+                "avatar": "https:\/\/www.i2f2f.com\/attachment\/images\/26\/2019\/04\/giXIQxrG74ZXPnLnnFxnd4Rn0QpCFP.jpg",
+                "title": "12321312",
+                "image": "https:\/\/www.i2f2f.com\/attachment\/images\/26\/2019\/04\/giXIQxrG74ZXPnLnnFxnd4Rn0QpCFP.jpg",
+                "content": "",
+                "create_time": "2019-11-29 00:00:00"
+            }
+        ],
+        activeIndex: '1',
+        activeIndex2: '1'
       }
-      
+    },
+    methods:{
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      fslip(item){
+        document.getElementById('content'+item).style.display="flex";
+        document.getElementById('detail'+item).style.display='none';
+      },
+      changShow(item){
+        console.log(item)
+        document.getElementById('content'+item).style.display="none";
+        document.getElementById('detail'+item).style.display='block';
+      }
+    },
+    comments: {
+
     }
-    </script>
+
+  }
+</script>

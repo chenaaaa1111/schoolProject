@@ -8,7 +8,7 @@ import HelloWorld from '@/components/HelloWorld'
 const routerPush = Router.prototype.push
 
 Router.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(error=> error)
+  return routerPush.call(this, location).catch(error => error)
 }
 
 Vue.use(Router)
@@ -24,7 +24,7 @@ export default new Router({
       path: '/classes',
       name: 'classes',
       component: () => import('@/views/classes/index1.vue'),
-      redirect:'/campusHomepage',
+      redirect: '/campusHomepage',
       children: [
         {
           path: '/campusHomepage',
@@ -40,7 +40,7 @@ export default new Router({
           path: '/myHomepage',
           name: 'myHomepage',
           component: () => import('@/views/classes/myHomepage/index.vue')
-        },
+        }
       ]
     },
     {
@@ -67,6 +67,16 @@ export default new Router({
       path: '/teaching',
       name: 'teaching',
       component: () => import('@/views/teaching/index.vue')
-    }
+    },
+       {
+          path: '/public',
+          name: 'public',
+          component: () => import('@/views/public/homePage'),
+          children:[{
+            path: '/elseclass',
+            name: 'teaching',
+            component: () => import('@/views/classes/otherClassPages')
+          }]
+        }
   ]
 })

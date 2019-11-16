@@ -1,4 +1,5 @@
 <template>
+  <!-- 班级主页内容组件 -->
   <div id="mainNavBar">
     <div class="mainNavBar">
       <!-- <ul class="mnavbar">
@@ -13,17 +14,17 @@
               <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
                 <ul>
                   <li v-for="item in contentList" class="contentList">
-                    <h4 class="title">{{item.title}} <span class="titleMsg">栏目（影评）</span> </h4>
+                    <h4 class="title">{{item.title}} <span class="titleMsg">栏目{{item.column_name?'（'+item.column_name+'）':''}}</span> </h4>
                     <div class="pd_40 imgline">
                       <van-image round width="32px" height="32px" fit="cover"
-                        src="https://img.yzcdn.cn/vant/cat.jpeg" />
-                      <span class="imgMessage">清江月明</span>
+                        :src="item.avatar" />
+                      <span class="imgMessage">{{item.name}}</span>
                       <span class="imgMessage linkFont">王府水晶</span>
                     </div>
                     <div class="content" :id="'content'+item.id">
                       <div class="leftImage">
                         <img
-                          src="https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1970667282,1217984340&fm=85&s=1D44C91206427F5319829BFE0300A02D"
+                          :src="item.image"
                           alt="">
                       </div>
                       <div class="rightContent">
@@ -76,103 +77,7 @@
   </div>
 
 </template>
-<style>
-  #mainNavBar .el-menu--horizontal>.el-submenu .el-submenu__title {
-    line-height: 44px;
-    height: 44px;
 
-  }
-
-  .linkFont {
-    color: #034692;
-  }
-
-  .van-image--round {
-    vertical-align: middle;
-  }
-
-  .titleMsg {
-    color: #666;
-    font-size: 20px;
-    margin-left: 30px;
-  }
-
-  .rightBar {
-    width: 100px;
-    margin-left: 40px;
-    line-height: 44px;
-    height: 44px;
-
-  }
-
-  .deatail {
-    display: flex;
-    padding-top: 30px;
-    padding-left: 40px;
-    font-size: 18px;
-  }
-
-  .content {
-    display: flex;
-    padding-top: 20px;
-    padding-left: 40px;
-    font-size: 18px;
-  }
-</style>
-<style scoped>
-  .contentList {
-    border-bottom: #DCDCDC 1px solid;
-    padding-bottom: 30px;
-  }
-
-  .imgline {
-    padding-top: 20px;
-  }
-
-  .date {
-    padding-top: 20px;
-    font-size: 18px;
-    color: #999;
-  }
-
-  .leftImage img {
-    width: 240px;
-    height: 136px;
-  }
-
-  .imgMessage {
-    font-size: 18px;
-  }
-
-  .title {
-    padding-left: 40px;
-    font-size: 24px;
-    font-weight: 900;
-    padding-top: 30px;
-  }
-
-  .updown {
-    color: #034692;
-  }
-
-  .rightContent {
-    margin-left: 30px;
-  }
-
-  .tabContainer {
-    display: flex;
-  }
-
-  .leftBar {
-    flex: 1;
-  }
-
-
-
-  body {
-    background: #000;
-  }
-</style>
 <script>
   // import 'vant/lib/button/style';
 
@@ -259,3 +164,100 @@
 
   }
 </script>
+<style>
+    #mainNavBar .el-menu--horizontal>.el-submenu .el-submenu__title {
+      line-height: 44px;
+      height: 44px;
+  
+    }
+  
+    .linkFont {
+      color: #034692;
+    }
+  
+    .van-image--round {
+      vertical-align: middle;
+    }
+  
+    .titleMsg {
+      color: #666;
+      font-size: 20px;
+      margin-left: 30px;
+    }
+  
+    .rightBar {
+      width: 100px;
+      margin-left: 40px;
+      line-height: 44px;
+      height: 44px;
+  
+    }
+  
+    .deatail {
+      display: flex;
+      padding-top: 30px;
+      padding-left: 40px;
+      font-size: 18px;
+    }
+  
+    .content {
+      display: flex;
+      padding-top: 20px;
+      padding-left: 40px;
+      font-size: 18px;
+    }
+  </style>
+  <style scoped>
+    .contentList {
+      border-bottom: #DCDCDC 1px solid;
+      padding-bottom: 30px;
+    }
+  
+    .imgline {
+      padding-top: 20px;
+    }
+  
+    .date {
+      padding-top: 20px;
+      font-size: 18px;
+      color: #999;
+    }
+  
+    .leftImage img {
+      width: 240px;
+      height: 136px;
+    }
+  
+    .imgMessage {
+      font-size: 18px;
+    }
+  
+    .title {
+      padding-left: 40px;
+      font-size: 24px;
+      font-weight: 900;
+      padding-top: 30px;
+    }
+  
+    .updown {
+      color: #034692;
+    }
+  
+    .rightContent {
+      margin-left: 30px;
+    }
+  
+    .tabContainer {
+      display: flex;
+    }
+  
+    .leftBar {
+      flex: 1;
+    }
+  
+  
+  
+    body {
+      background: #000;
+    }
+  </style>

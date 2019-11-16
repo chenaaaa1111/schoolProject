@@ -5,9 +5,9 @@
         <el-col  :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="navcol">
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1" class="brand" disabled><img src="../../assets/images/classes/classesicon.png"/>班级空间</el-menu-item>
-            <el-menu-item index="2" >校园主页</el-menu-item>
-            <el-menu-item index="3" >我的班级</el-menu-item>
-            <el-menu-item index="4" >我的主页</el-menu-item>
+            <el-menu-item index="campusHomepage" >校园主页</el-menu-item>
+            <el-menu-item index="classHomepage" >我的班级</el-menu-item>
+            <el-menu-item index="myHomepage" >我的主页</el-menu-item>
             <li class="el-menu-item menu-search hidden-sm-and-down">
               <el-input type="text" suffix-icon="el-icon-search"></el-input>
             </li>
@@ -29,25 +29,33 @@
       </el-row>
     </div>
     <div class="currency-body">
-      <campusHomepage></campusHomepage>
+      <campusHomepage v-if="activeIndex == 'campusHomepage'"></campusHomepage>
+      <classHomepage v-if="activeIndex == 'classHomepage'"></classHomepage>
+      <myHomepage v-if="activeIndex == 'myHomepage'"></myHomepage>
     </div>
   </div>
 </template>
 <script>
   import campusHomepage from './campusHomepage/index1.vue'
+  import classHomepage from './classHomepage/index.vue'
+  import myHomepage from './myHomepage/index.vue'
   export default{
     components: {
-      campusHomepage
+      campusHomepage,
+      classHomepage,
+      myHomepage
     },
     data() {
       return {
-        activeIndex: '2',
+        activeIndex: 'campusHomepage',
         fit: 'cover',
         url: require('../../assets/images/user.png')
       }
     },
     methods: {
-      handleSelect() {},
+      handleSelect(val) {
+        this.activeIndex = val
+      },
     }
   }
 </script>

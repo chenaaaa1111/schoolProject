@@ -112,7 +112,7 @@
     }
 
     .currency-top{
-      width: 100%;
+      // width: 100%;
       height: 100px;
       position: sticky;
       top: 0;

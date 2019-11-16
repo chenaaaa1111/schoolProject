@@ -177,6 +177,7 @@
       text-align: right;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
     }
     .hideWrap{
       padding-right:20px;

@@ -6,7 +6,7 @@
           <el-row >
             <el-col :span="16" class="schoolName">我的个人主页</el-col>
             <el-col :span="8" class="write">
-              <el-button type="plan">写新闻</el-button>
+              <el-button type="plan" @click="write">写新闻</el-button>
             </el-col>
             <el-col :span="24" class="myClass">西区初中2019级1班</el-col>
           </el-row>
@@ -300,7 +300,11 @@
       }
     },
     methods: {
-
+      write() { // 写新闻
+        this.$router.push({
+          name: 'writenews'
+        })
+      },
     }
   }
 </script>

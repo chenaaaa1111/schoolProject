@@ -67,6 +67,11 @@ export default new Router({
       path: '/teaching',
       name: 'teaching',
       component: () => import('@/views/teaching/index.vue')
+    },
+    {
+      path: '/writenews',
+      name: 'writenews',
+      component: () => import('@/views/writenews/index.vue')
     }
   ]
 })

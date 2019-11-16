@@ -5,7 +5,7 @@
         <el-col  :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="navcol">
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1" class="brand" disabled><img src="../../assets/images/classes/classesicon.png"/>班级空间</el-menu-item>
-            <el-menu-item index="campusHomepage" >校园主页</el-menu-item>
+            <el-menu-item index="" >写新闻</el-menu-item>
 
             <li class="el-menu-item menu-search ">
               <el-dropdown trigger="click">
@@ -129,7 +129,7 @@ import 'quill/dist/quill.bubble.css';
         this.activeIndex = val
       },
       goBack() { // 从哪儿来，回哪儿去
-
+        this.$router.go(-1);//返回上一层
       },
       handleRemove(file) {
         console.log(file);
@@ -218,6 +218,7 @@ import 'quill/dist/quill.bubble.css';
     }
     .currency-body{
       .edit-card{
+        margin-top: 30px;
         .formrow{
           margin: 30px 0px;
         }

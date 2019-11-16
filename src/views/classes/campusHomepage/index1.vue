@@ -6,7 +6,7 @@
           <el-row >
             <el-col :span="16" class="schoolName">华悦蜀山区第一中学</el-col>
             <el-col :span="8" class="write">
-              <el-button type="default">写新闻</el-button>
+              <el-button type="default" @click="write">写新闻</el-button>
             </el-col>
           </el-row>
           <el-row >
@@ -148,7 +148,11 @@
       }
     },
     methods: {
-
+      write() {
+        this.$router.push({
+          name: 'writenews'
+        })
+      }
     },
     components:{
       mainNavBar

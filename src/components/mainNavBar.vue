@@ -10,48 +10,52 @@
         <div class="leftBar">
           <van-tabs>
             <van-tab v-for="item in dataList" :title="item.text" :key="item.id">
-              <ul>
-                <li v-for="item in contentList" class="contentList">
-                  <h4 class="title">{{item.title}} <span class="titleMsg">栏目（影评）</span> </h4>
-                  <div class="pd_40 imgline">
-                    <van-image round width="32px" height="32px" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-                    <span class="imgMessage">清江月明</span>
-                    <span class="imgMessage linkFont">王府水晶</span>
-                  </div>
-                  <div class="content" :id="'content'+item.id">
-                    <div class="leftImage">
-                      <img
-                        src="https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1970667282,1217984340&fm=85&s=1D44C91206427F5319829BFE0300A02D"
-                        alt="">
+              <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+                <ul>
+                  <li v-for="item in contentList" class="contentList">
+                    <h4 class="title">{{item.title}} <span class="titleMsg">栏目（影评）</span> </h4>
+                    <div class="pd_40 imgline">
+                      <van-image round width="32px" height="32px" fit="cover"
+                        src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                      <span class="imgMessage">清江月明</span>
+                      <span class="imgMessage linkFont">王府水晶</span>
                     </div>
-                    <div class="rightContent">
-                      <span>
-                        Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                      </span>
-                      <span @click="changShow(item.id)" class="updown">
-                        查看更多
+                    <div class="content" :id="'content'+item.id">
+                      <div class="leftImage">
+                        <img
+                          src="https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1970667282,1217984340&fm=85&s=1D44C91206427F5319829BFE0300A02D"
+                          alt="">
+                      </div>
+                      <div class="rightContent">
+                        <span>
+                          Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                        </span>
+                        <span @click="changShow(item.id)" class="updown">
+                          查看更多
+                        </span>
+                      </div>
+                    </div>
+                    <div class="deatail" style="display: none;" :id="'detail'+item.id">
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
+                      <span @click="fslip(item.id)" class="updown">
+                        收起
                       </span>
                     </div>
-                  </div>
-                  <div class="deatail" style="display: none;" :id="'detail'+item.id">
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    Brisbane： 从来没有一个瞎子，能在bo5三把中连续打出整个赛季的top10 从来没有一个瞎子，能在一把比赛中，拥有Dandy的大局观，灵药的开团…
-                    <span @click="fslip(item.id)" class="updown">
-                      收起
-                    </span>
-                  </div>
-                  <p class="date pd_40">{{item.create_time}}</p>
-                </li>
-              </ul>
+                    <p class="date pd_40">{{item.create_time}}</p>
+                  </li>
+                </ul>
+              </van-list>
+
             </van-tab>
           </van-tabs>
 
@@ -78,7 +82,7 @@
     height: 44px;
 
   }
-  
+
   .linkFont {
     color: #034692;
   }
@@ -116,18 +120,21 @@
   }
 </style>
 <style scoped>
-  .contentList{
-     border-bottom: #DCDCDC 1px solid;
-     padding-bottom: 30px;
+  .contentList {
+    border-bottom: #DCDCDC 1px solid;
+    padding-bottom: 30px;
   }
+
   .imgline {
     padding-top: 20px;
   }
-  .date{
+
+  .date {
     padding-top: 20px;
     font-size: 18px;
     color: #999;
   }
+
   .leftImage img {
     width: 240px;
     height: 136px;
@@ -173,6 +180,9 @@
     name: 'mainNavBar',
     data() {
       return {
+        list: [],
+        loading: false,
+        finished: false,
         active: 1,
         dataList: [{ text: '全部', id: 'all' }, { text: '最新', id: '1' },
         { text: '就业', id: '2' }, { text: '专业', id: '3' }, { text: '辅导', id: '4' }, { text: '辅导班', id: '5' }],
@@ -207,6 +217,31 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      onLoad() {
+        // 异步更新数据
+        setTimeout(() => {
+          for (let i = 0; i < 10; i++) {
+            this.contentList.push({
+              "id": 5,
+              "columns": 2,
+              "column_name": "",
+              "name": "12321312",
+              "avatar": "https:\/\/www.i2f2f.com\/attachment\/images\/26\/2019\/04\/giXIQxrG74ZXPnLnnFxnd4Rn0QpCFP.jpg",
+              "title": "12321312",
+              "image": "https:\/\/www.i2f2f.com\/attachment\/images\/26\/2019\/04\/giXIQxrG74ZXPnLnnFxnd4Rn0QpCFP.jpg",
+              "content": "",
+              "create_time": "2019-11-29 00:00:00"
+            });
+          }
+          // 加载状态结束
+          this.loading = false;
+
+          // 数据全部加载完成
+          if (this.list.length >= 40) {
+            this.finished = true;
+          }
+        }, 500);
       },
       fslip(item) {
         document.getElementById('content' + item).style.display = "flex";

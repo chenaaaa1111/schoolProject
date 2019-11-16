@@ -7,14 +7,16 @@ import 'lib-flexible'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css';
 import router from './router'
-import { Tab, Tabs } from 'vant';
+import { Tab, Tabs,List,Cell } from 'vant';
 import { Image } from 'vant';
+
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-Vue.use(Tab);
-Vue.use(Tabs);
-Vue.use(Image)
+Vue.use(Tab);Vue.use(Tabs);Vue.use(Image);Vue.use(List);Vue.use(Cell);
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

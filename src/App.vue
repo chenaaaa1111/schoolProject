@@ -15,6 +15,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+ul{
+  list-style: none;
+}
 html,body{
   width: 100%;
   height: 100%;

@@ -88,7 +88,9 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      dataList:[{text:'全部',id:'all'},{text:'最新',id:'1'},
+      {text:'就业',id:'2'},{text:'专业',id:'3'},{text:'辅导',id:'4'},{text:'辅导班',id:'5'}]
+      
     }
   }
 }

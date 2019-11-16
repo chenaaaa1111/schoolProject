@@ -75,7 +75,11 @@
                 </ul>
               </el-card>
             </el-col>
-            <el-col :xl="18" :lg="18" :md="16" :sm="16" :xs="24"><el-card>right</el-card></el-col>
+            <el-col :xl="18" :lg="18" :md="16" :sm="16" :xs="24"><el-card>
+                <mainNavBar>
+
+                </mainNavBar>
+            </el-card></el-col>
           </el-row>
         </el-col>
       </el-row>
@@ -83,6 +87,7 @@
   </el-row>
 </template>
 <script>
+  import mainNavBar from '@/components/mainNavBar';
   export default{
     data() {
       return {
@@ -144,6 +149,9 @@
     },
     methods: {
 
+    },
+    components:{
+      mainNavBar
     }
   }
 </script>

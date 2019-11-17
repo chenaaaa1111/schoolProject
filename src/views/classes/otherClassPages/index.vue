@@ -62,7 +62,7 @@
     import LeftPhotoLIst from '@/components/LeftPhotoLIst';
     import mainNavBar from '@/components/mainNavBar';
     import 'element-ui/lib/theme-chalk/display.css';
-
+    import request from '@/api/request.js';
     export default {
         name: 'otherClassPageIndex',
         data() {
@@ -79,6 +79,13 @@
                     this.$refs.phoneImg.style.display = "none";
                 }
             }
+        },
+        mounted(){
+            var data={
+                column:0,
+                class:1
+            }
+            request.post('/roomapi/Room_Class/classPage',data)
         },
         components: {
             homePage,
@@ -112,7 +119,7 @@
 
     }
     .avatarImg{
-        display: block;
+        display: none;
     width: 100%;
     overflow-y: scroll;
     background: #fff;

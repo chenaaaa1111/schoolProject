@@ -26,7 +26,7 @@
     methods: {
       spaceChange(data) {
         console.log(data, 'current ????')
-        this.currentPage = data
+        this.currentPage = data;
       },
     }
   }

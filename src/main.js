@@ -10,7 +10,7 @@ import router from './router'
 import { Tab, Tabs,List,Cell,Icon,Image,Row, Col   } from 'vant';
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(ElementUI)
 Vue.use(Tab);Vue.use(Tabs);Vue.use(Image);Vue.use(List);Vue.use(Cell);Vue.use(Icon);Vue.use(Row);Vue.use(Col);

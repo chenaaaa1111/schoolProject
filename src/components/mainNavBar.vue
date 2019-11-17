@@ -9,19 +9,19 @@
               </ul> -->
       <div class="tabContainer">
         <div class="leftBar">
-          <van-tabs>
+          <van-tabs class="mainleftbar" :swipe-threshold='5' :ellipsis="false" :swipeable="true"	>
             <van-tab v-for="item in dataList" :title="item.text" :key="item.id">
               <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
                 <ul>
                   <li v-for="item in contentList" class="contentList">
                     <h4 class="title">{{item.title}} <span class="titleMsg">栏目{{item.column_name?'（'+item.column_name+'）':''}}</span> </h4>
-                    <div class="pd_40 imgline">
+                    <div class=" imgline">
                       <van-image round width="32px" height="32px" fit="cover"
                         :src="item.avatar" />
                       <span class="imgMessage">{{item.name}}</span>
                       <span class="imgMessage linkFont">王府水晶</span>
                     </div>
-                    <div class="content" :id="'content'+item.id">
+                    <div class="imtextview" :id="'content'+item.id">
                       <div class="leftImage">
                         <img
                           :src="item.image"
@@ -165,12 +165,28 @@
   }
 </script>
 <style>
+  .mainleftbar{
+    /* padding-right:40px; */
+  }
     #mainNavBar .el-menu--horizontal>.el-submenu .el-submenu__title {
       line-height: 44px;
       height: 44px;
   
     }
-  
+    .van-hairline--top-bottom{
+      /* width: 80%; */
+    }
+    .van-tab{
+      padding-left: 20px;
+    }
+    .van-tabs__nav--line{
+      font-size: 20px;
+    }
+    .imtextview{
+      display: flex;
+      padding-top: 20px;
+      font-size: 18px;
+    }
     .linkFont {
       color: #034692;
     }
@@ -196,7 +212,6 @@
     .deatail {
       display: flex;
       padding-top: 30px;
-      padding-left: 40px;
       font-size: 18px;
     }
   
@@ -204,6 +219,7 @@
       display: flex;
       padding-top: 20px;
       padding-left: 40px;
+      padding-right: 40px;
       font-size: 18px;
     }
   </style>
@@ -233,7 +249,7 @@
     }
   
     .title {
-      padding-left: 40px;
+      /* padding-left: 40px; */
       font-size: 24px;
       font-weight: 900;
       padding-top: 30px;

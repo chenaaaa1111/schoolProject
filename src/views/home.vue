@@ -1,43 +1,78 @@
 <template>
-  <div class="view-home">
-    <div class="home-nav">
-      <div class="nav-box">
-        <div class="nav-welcome">
-          欢迎来到校本社团综合管理服务系统
-        </div>
-        <div class="userInfo">
-          <el-dropdown @visible-change="visibleChange" @command="handleCommand">
-            <span class="el-dropdown-link">
-              <img class="userimg" src="../assets/images/user.png"/>
-              <span v-show="!visible">刘子璇</span>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="none" disabled><span class="username">刘子璇</span></el-dropdown-item>
-              <el-dropdown-item command="account">资料与账号</el-dropdown-item>
-              <el-dropdown-item command="exit">退出</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-      </div>
+  <div class="view-home" >
+    <div class="home-top">
+      <el-row type="flex" justify="center">
+        <el-col class="home-navbox" :xl="18" :lg="18" :md="20" :sm="22" :xs="24">
+          <el-row>
+            <el-col :span="12" class="nav-title">
+              <img src="../assets/fonts/logo.png" />
+              欢迎来到校本社团综合管理服务系统
+            </el-col>
+            <el-col :span="12" class="nav-user">
+              <el-dropdown trigger="click" @visible-change="visibleChange">
+                <span class="el-dropdown-link">
+                  <el-avatar shape="circle" :size="48" :fit="fit" :src="url"></el-avatar>
+                  <span v-if="!visible" class="userName">刘子璇</span>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item icon="el-icon-s-custom">刘子璇</el-dropdown-item>
+                  <el-dropdown-item icon="el-icon-s-cooperation">资料与账号</el-dropdown-item>
+                  <el-dropdown-item icon="el-icon-close">退出</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-col>
+          </el-row>
+        </el-col>
+      </el-row>
     </div>
     <div class="home-body">
-      <div class="body-wrap">
-        <div class="body-panel">
-          <ul class="lattice">
-            <li v-for="(item,index) in routerList">
-              <router-link :to="{name: item.name}" class="router-link" :key="index">
-                <img :src="item.image"/>
-                <p>{{item.title}}</p>
-              </router-link>
-            </li>
-            <!-- <li>
-              <router-link :to="{name: 'home'}" class="router-link">
-                <img src="../assets/images/classs.png"/>
-                <p>班级空间</p>
-              </router-link>
-            </li> -->
-          </ul>
-        </div>
+      <div class="body-inner">
+        <el-row type="flex" justify="center" style="width: 100%;">
+          <el-col :xl="16" :lg="16" :md="20" :sm="22" :xs="24">
+            <el-card class="nine">
+              <el-row>
+                <el-col :span="8" v-for="(item, index) in routerList">
+                  <router-link :to="{name: item.name}" class="router-link" :key="index">
+                    <div class="icon-box">
+                      <img :src="item.image" />
+                    </div>
+                    <div class="item-title">{{item.title}}</div>
+                  </router-link>
+                </el-col>
+                <!-- <el-col :span="8">
+                  <div class="icon-box">
+                    <img src="../assets/main/grade.png" />
+                  </div>
+                  <div class="item-title">年级空间</div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="icon-box">
+                    <img src="../assets/main/team.png" />
+                  </div>
+                  <div class="item-title">社团</div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="icon-box">
+                    <img src="../assets/main/special.png" />
+                  </div>
+                  <div class="item-title">专题空间</div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="icon-box">
+                    <img src="../assets/main/topic.png" />
+                  </div>
+                  <div class="item-title">课题空间</div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="icon-box">
+                    <img src="../assets/main/teaching.png" />
+                  </div>
+                  <div class="item-title">教研空间</div>
+                </el-col> -->
+              </el-row>
+            </el-card>
+          </el-col>
+        </el-row>
       </div>
     </div>
   </div>
@@ -46,37 +81,39 @@
   export default{
     data() {
       return {
+        url: require('../assets/images/user.png'),
+        fit: 'cover',
         visible: false,
         routerList: [
           {
             name: 'classes',
             title: '班级空间',
-            image: require('../assets/images/classs.png')
+            image: require('../assets/main/classes.png')
           },
           {
             name: 'grade',
             title: '年级空间',
-            image: require('../assets/images/grade.png')
+            image: require('../assets/main/grade.png')
           },
           {
             name: 'team',
             title: '社团空间',
-            image: require('../assets/images/team.png')
+            image: require('../assets/main/team.png')
           },
           {
             name: 'special',
             title: '专题空间',
-            image: require('../assets/images/special.png')
+            image: require('../assets/main/special.png')
           },
           {
             name: 'topic',
             title: '课题空间',
-            image: require('../assets/images/topic.png')
+            image: require('../assets/main/topic.png')
           },
           {
             name: 'teaching',
             title: '教研空间',
-            image: require('../assets/images/teaching.png')
+            image: require('../assets/main/teaching.png')
           },
         ]
       }
@@ -85,8 +122,8 @@
       visibleChange(val) {
         this.visible = val
       },
-      handleCommand(command) {
-        console.log(command, '--dropdown item click')
+      changeRouter(name) {
+        console.log('name')
       }
     }
   }
@@ -95,129 +132,109 @@
 <style lang="scss">
   .view-home{
     height: 100%;
-    position: relative;
     background: url('../assets/images/bg1.jpg') no-repeat;
     background-size: 100% 100%;
-    .home-nav{
-      height: 84px;
-      background: #FFF;
-      .nav-box{
-        width: 1152px;
-        height: 100%;
-        margin: 0 auto;
-        .nav-welcome{
-          height: 44px;
-          line-height: 44px;
-          float: left;
-          font-size: 26px;
-          font-weight: 400;
-          margin-top: 20px;
-          padding-left: 50px;
-          background: url('../assets/fonts/logo.png') no-repeat left center;
-        }
-        .userInfo{
+    display: flex;
+    flex-direction: column;
+    .home-top{
+      background:rgba(255,255,255,1);
+      box-shadow:0px 2px 4px 0px rgba(0,0,0,0.18);
+      height: 100px;
+      .home-navbox{
+        .el-row{
           height: 100%;
-          float: right;
-          .el-dropdown {
-            font-size: 14px;
-            height: 100%;
-            line-height: 84px;
-            font-size: 18px;
-            font-weight: 500;
-            .el-dropdown-selfdefine{
-              display: block;
-              height: 100%;
-              cursor: pointer;
-              padding: 0 20px;
-              font-size: 18px;
-            }
-            .el-dropdown-selfdefine:hover{
-              background: #A6CAF4;
+          .nav-title{
+            padding-left: 10px;
+            height: 100px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            img{
+              display: inline-block;
+              width: 48px;
+              height: 48px;
+              vertical-align: middle;
+              margin-right: 16px;
             }
           }
-          .userimg{
-            display: inline-block;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            vertical-align: middle;
+          .nav-user{
+            padding-right: 10px;
+            height: 100%;
+            text-align: right;
+            .el-dropdown{
+              height: 100%;
+              .el-dropdown-link{
+                display: block;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                .el-avatar{
+                  margin-right: 16px;
+                }
+                .userName{
+                  float: right;
+                  font-size: 20px;
+                  font-weight: 500;
+                }
+              }
+            }
           }
         }
       }
     }
     .home-body{
-      position: absolute;
       width: 100%;
-      height: auto;
-      top: 84px;
-      bottom: 0px;
-    }
-  }
-  .username{
-    color: #333;
-    font-weight: 500;
-  }
-  .el-dropdown-menu__item{
-    width: 214px;
-    padding: 0px 20px;
-    font-size: 16px;
-  }
-  .home-body{
-    .body-wrap{
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-    }
-    .body-panel{
-      width: 900px;
-      height: 504px;
-      padding: 95px 125px;
-      background: #F5F3F3;
-      border-radius: 20px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -347px;
-      margin-left: -575px;
-      .lattice{
-        list-style: none;
+			flex: 1;
+      .body-inner{
         width: 100%;
         height: 100%;
-        li{
-          width: 33.33%;
-          height: 50%;
-          float: left;
-          box-shadow: 1px 1px #D0D0D0;
-          .router-link{
-            display: block;
-            width: 101px;
-            margin: 55px auto;
-            text-decoration: none;
-            text-align: center;
-            img{
-              display: block;
+        position: relative;
+        display: flex;
+        align-items: center;
+        .nine{
+          background: #F8FBFC;
+          margin: 0px 10px;
+          .el-card__body{
+            padding: 80px;
+          }
+          .el-col:nth-child(3){
+            box-shadow: 0px 1px #CECDCD;
+          }
+          .el-col:nth-child(4){
+            box-shadow: 1px 0px #CECDCD;
+          }
+          .el-col:nth-child(5){
+            box-shadow: 1px 0px #CECDCD;
+          }
+          .el-col:nth-child(6){
+            box-shadow: 0px 0px #CECDCD;
+          }
+          .el-col:hover{
+            background: #c1e0e8;
+            cursor: pointer;
+            color: #329EB6;
+          }
+          .el-col{
+            box-shadow: 1px 1px #CECDCD;
+            .icon-box{
+              width: 100px;
               height: 100px;
+              padding: 10px;
+              margin: 42px auto 10px;
+              img{
+                display: block;
+                width: 100%;
+                height: 100%;
+              }
             }
-            p{
-              line-height: 40px;
-              font-size: 22px;
+            .item-title{
+              font-size: 24px;
+              text-align: center;
+              margin-bottom: 50px;
             }
           }
         }
-
-      }
-      .lattice li:nth-child(3){
-        box-shadow: 0px 1px #D0D0D0;
-      }
-      .lattice li:nth-child(4){
-        box-shadow: 1px 0px #D0D0D0;
-      }
-      .lattice li:nth-child(5){
-        box-shadow: 1px 0px #D0D0D0;
-      }
-      .lattice li:nth-child(6){
-        box-shadow: 0px 0px #D0D0D0;
       }
     }
   }

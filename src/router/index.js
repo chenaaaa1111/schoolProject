@@ -23,7 +23,7 @@ export default new Router({
     {
       path: '/classes',
       name: 'classes',
-      component: () => import('@/views/classes/index1.vue'),
+      component: () => import('@/views/classes/index2.vue'),
       redirect: '/campusHomepage',
       children: [
         {

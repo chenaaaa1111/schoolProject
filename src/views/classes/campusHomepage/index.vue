@@ -1,47 +1,48 @@
 <template>
-  <div class="body-inner">
-    <el-card class="box-card box-card-top">
-      <div class="brand">
-        <img src="../../../assets/fonts/logo.png" />
-        <span>广州大学校园主页</span>
-        <el-button plain class="write" :autofocus="true">写新闻</el-button>
-      </div>
-    </el-card>
-    <el-card class="box-card">
-
-    </el-card>
-  </div>
+  <el-row type="flex" justify="center" class="space-wrap">
+    <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="entry-content">
+      <el-row :gutter="10" class="panel-row">
+        <el-col :xl="6" :lg="6" :md="8" :sm="8" class="panel-left hidden-xs-only">
+          <!-- 学校新闻动态 -->
+          <News></News>
+          <!-- 班级空间-侧边栏 -->
+          <Classes></Classes>
+          <!-- 通知公告 -->
+          <Notice></Notice>
+        </el-col>
+        <el-col :xl="18" :lg="18" :md="16" :sm="16" :xs="24">
+          <el-card>
+            <mainNavBar></mainNavBar>
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-col>
+  </el-row>
 </template>
-<style lang="scss">
-  .body-inner{
-    width: 1152px;
-    margin: 0px auto;
-    .box-card-top{
-      margin-top: 20px;
-      .brand{
-        font-size: 28px;
-        font-weight: 500;
-        position: relative;
-        img{
-          display: inline-block;
-          width: 56px;
-          height: 56px;
-          vertical-align: middle;
-          margin-right: 10px;
-        }
-        .write{
-          position: absolute;
-          top: 8px;
-          right: 0;
-          font-size: 16px;
-          font-weight: 500;
-          color: #409EFF;
-          border: 1px solid #409EFF;
-        }
+<script>
+  import mainNavBar from '@/components/mainNavBar';
+  import News from '../../public/components/news.vue'
+  import Classes from '../../public/components/classes.vue'
+  import Notice from '../../public/components/notice.vue'
+  export default{
+    components: {
+      mainNavBar,
+      News,
+      Classes,
+      Notice
+    },
+    data() {
+      return {
+
       }
+    },
+    methods: {
+
     }
-    .box-card{
-      margin-bottom: 20px;
-    }
+  }
+</script>
+<style media="screen" lang="scss" scoped>
+  .space-wrap{
+    margin-top: 30px;
   }
 </style>

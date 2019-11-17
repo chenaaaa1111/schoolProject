@@ -31,8 +31,8 @@
           <el-col :xl="16" :lg="16" :md="20" :sm="22" :xs="24">
             <el-card class="nine">
               <el-row>
-                <el-col :span="8" v-for="(item, index) in routerList">
-                  <router-link :to="{name: item.name}" class="router-link" :key="index">
+                <el-col :span="8" v-for="(item, index) in routerList" :key="index">
+                  <router-link :to="{name: item.name}" class="router-link">
                     <div class="icon-box">
                       <img :src="item.image" />
                     </div>

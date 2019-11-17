@@ -13,6 +13,19 @@
                         <li class="el-menu-item menu-search hidden-sm-and-down">
                             <el-input type="text" suffix-icon="el-icon-search"></el-input>
                         </li>
+                        <!-- 待改进 -->
+                        <!-- <li style="float: right;">
+                          <el-dropdown trigger="click">
+                              <span class="el-dropdown-link">
+                                  <el-avatar shape="circle" :size="48" :fit="fit" :src="url"></el-avatar>
+                              </span>
+                              <el-dropdown-menu slot="dropdown">
+                                  <el-dropdown-item icon="el-icon-s-custom">刘子璇</el-dropdown-item>
+                                  <el-dropdown-item icon="el-icon-s-cooperation">资料与账号</el-dropdown-item>
+                                  <el-dropdown-item icon="el-icon-close">退出</el-dropdown-item>
+                              </el-dropdown-menu>
+                          </el-dropdown>
+                        </li> -->
                     </el-menu>
                     <div class="userpic">
                         <el-dropdown trigger="click">
@@ -29,9 +42,6 @@
                     </div>
                 </el-col>
             </el-row>
-        </div>
-        <div class="currency-body">
-            <router-view></router-view>
         </div>
     </div>
 </template>
@@ -51,19 +61,22 @@
         methods: {
             handleSelect(val) {
                 this.activeIndex = val
+                this.$emit('getActiveIndex', val)
             },
         }
     }
 </script>
 <style>
-   
+
 </style>
 <style lang="scss">
     .currency {
-        min-height: 100%;
+        // min-height: 100%;
         background: url('../../assets/images/classes/classesbg.png') no-repeat;
         background-size: 100% 100%;
-
+        position: sticky;
+        top: 0;
+        z-index: 999;
         .navcol {
             position: relative;
             background: #fff;

@@ -120,6 +120,7 @@
     },
     methods: {
       visibleChange(val) {
+        console.log(val, 'val shishenme ')
         this.visible = val
       },
       changeRouter(name) {

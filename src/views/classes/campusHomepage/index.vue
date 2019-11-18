@@ -36,6 +36,9 @@
 
       }
     },
+    mounted() {
+      console.log('有没有走组件本身生命周期?')
+    },
     methods: {
 
     }

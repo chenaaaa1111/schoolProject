@@ -30,14 +30,26 @@
 </template>
 <script>
   export default{
+    props: {
+      whereami: {
+        type: String,
+        default: ''
+      }
+    },
     data() {
       return {
 
       }
     },
+    mounted() {
+      console.log(this.whereami, 'where am i ????')
+    },
     methods: {
-      write() {        
-        this.$emit('goWrite',data)
+      write() {
+        let data = {
+          name: this.whereami
+        }
+        this.$emit('goWrite', data)
       }
     }
   }

@@ -1,8 +1,10 @@
 <template>
   <div class="entry">
     <HomePage @getActiveIndex="spaceChange"></HomePage>
+
     <pageTop :whereami="currentPage" @goWrite="goWrite"></pageTop>
     <campusHomepage v-if="currentPage == 'campusHomepage'"></campusHomepage>
+
     <myHomepage v-if="currentPage == 'myHomepage'"></myHomepage>
   </div>
 </template>
@@ -23,14 +25,16 @@
         currentPage: 'campusHomepage'
       }
     },
+    watch:{
+  　　'$route'(to,from){
+        console.log(to,from , 'to == from')
+  　　}
+    },
     created() {
       console.log(this.currentPage,'重新加载 writebackpage')
     },
     mounted() {
-      console.log(this.$route.query.name, 'query ????')
-      if(this.$route.query.name != undefined) {
-        this.currentPage = this.$route.query.name
-      }
+
     },
     methods: {
       spaceChange(data) {
@@ -41,9 +45,9 @@
         console.log(data, 'from write')
         this.$router.push({
           name: 'writenews',
-          query: {
-            fromwhere: data.name
-          }
+          // query: {
+          //   fromwhere: data.name
+          // }
         })
       },
     }

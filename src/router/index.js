@@ -73,16 +73,16 @@ export default new Router({
       name: 'teaching',
       component: () => import('@/views/teaching/index.vue')
     },
-       {
-          path: '/public',
-          name: 'public',
-          component: () => import('@/views/public/homePage'),
-          children:[{
-            path: '/elseclass',
-            name: 'teaching',
-            component: () => import('@/views/classes/otherClassPages')
-          }]
-        },
+   {
+      path: '/public',
+      name: 'public',
+      component: () => import('@/views/public/homePage'),
+      children:[{
+        path: '/elseclass',
+        name: 'teaching',
+        component: () => import('@/views/classes/otherClassPages')
+      }]
+    },
     {
       path: '/writenews',
       name: 'writenews',

@@ -124,12 +124,21 @@ import 'quill/dist/quill.bubble.css';
         return this.$refs.myQuillEditor.quill;
       },
     },
+    mounted() {
+      console.log(this.$route.query.fromwhere, 'fromwhere ?????')
+    },
     methods: {
       handleSelect(val) {
         this.activeIndex = val
       },
       goBack() { // 从哪儿来，回哪儿去
-        this.$router.go(-1);//返回上一层
+        // this.$store.commit('setSpaceInitTab', this.$route.query.fromwhere)
+        this.$router.push({
+          name: this.$route.query.fromwhere,
+          query: {
+            name: this.$route.query.fromwhere
+          }
+        })
       },
       handleRemove(file) {
         console.log(file);

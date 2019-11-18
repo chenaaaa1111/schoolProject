@@ -9,23 +9,21 @@
               </ul> -->
       <div class="tabContainer">
         <div class="leftBar">
-          <van-tabs class="mainleftbar" :swipe-threshold='5' :ellipsis="false" :swipeable="true"	>
+          <van-tabs class="mainleftbar" :swipe-threshold='5' :ellipsis="false" :swipeable="true">
             <van-tab v-for="item in dataList" :title="item.text" :key="item.id">
               <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
                 <ul>
                   <li v-for="item in contentList" class="contentList">
-                    <h4 class="title">{{item.title}} <span class="titleMsg">栏目{{item.column_name?'（'+item.column_name+'）':''}}</span> </h4>
+                    <h4 class="title">{{item.title}} <span
+                        class="titleMsg">栏目{{item.column_name?'（'+item.column_name+'）':''}}</span> </h4>
                     <div class=" imgline">
-                      <van-image round width="32px" height="32px" fit="cover"
-                        :src="item.avatar" />
+                      <van-image round width="32px" height="32px" fit="cover" :src="item.avatar" />
                       <span class="imgMessage">{{item.name}}</span>
                       <span class="imgMessage linkFont">王府水晶</span>
                     </div>
                     <div class="imtextview" :id="'content'+item.id">
                       <div class="leftImage">
-                        <img
-                          :src="item.image"
-                          alt="">
+                        <img :src="item.image" alt="">
                       </div>
                       <div class="rightContent">
                         <span>
@@ -158,6 +156,18 @@
         document.getElementById('detail' + item).style.display = 'block';
       }
     },
+    mounted: function () {
+
+    },
+    wrap() {
+      var clientWidth = document.body.clientWidth;
+      console.log('clientWidth', clientWidth);
+      var html = document.getElementsByTagName("html")[0];
+      if (clientWidth > 980) {
+        clientWidth = 980;
+      }
+      html.style.fontSize = clientWidth / 12.4 + "px";
+    },
     comments: {
 
     }
@@ -165,115 +175,122 @@
   }
 </script>
 <style>
-  .mainleftbar{
+  .mainleftbar {
     /* padding-right:40px; */
   }
-    #mainNavBar .el-menu--horizontal>.el-submenu .el-submenu__title {
-      line-height: 44px;
-      height: 44px;
-  
-    }
-    .van-hairline--top-bottom{
-      /* width: 80%; */
-    }
-    .van-tab{
-      padding-left: 20px;
-    }
-    .van-tabs__nav--line{
-      font-size: 20px;
-    }
-    .imtextview{
-      display: flex;
-      padding-top: 20px;
-      font-size: 18px;
-    }
-    .linkFont {
-      color: #034692;
-    }
-  
-    .van-image--round {
-      vertical-align: middle;
-    }
-  
-    .titleMsg {
-      color: #666;
-      font-size: 20px;
-      margin-left: 30px;
-    }
-  
-    .rightBar {
-      width: 100px;
-      margin-left: 40px;
-      line-height: 44px;
-      height: 44px;
-  
-    }
-  
-    .deatail {
-      display: flex;
-      padding-top: 30px;
-      font-size: 18px;
-    }
-  
-    .content {
-      display: flex;
-      padding-top: 20px;
-      padding-left: 40px;
-      padding-right: 40px;
-      font-size: 18px;
-    }
-  </style>
-  <style scoped>
-    .contentList {
-      border-bottom: #DCDCDC 1px solid;
-      padding-bottom: 30px;
-    }
-  
-    .imgline {
-      padding-top: 20px;
-    }
-  
-    .date {
-      padding-top: 20px;
-      font-size: 18px;
-      color: #999;
-    }
-  
-    .leftImage img {
-      width: 240px;
-      height: 136px;
-    }
-  
-    .imgMessage {
-      font-size: 18px;
-    }
-  
-    .title {
-      /* padding-left: 40px; */
-      font-size: 24px;
-      font-weight: 900;
-      padding-top: 30px;
-    }
-  
-    .updown {
-      color: #034692;
-    }
-  
-    .rightContent {
-      margin-left: 30px;
-    }
-  
-    .tabContainer {
-      display: flex;
-    }
-  
-    .leftBar {
-      flex: 1;
-    }
-  
-  
-  
-    body {
-      background: #000;
-    }
-  </style>
+
+  #mainNavBar .el-menu--horizontal>.el-submenu .el-submenu__title {
+    line-height: 44px;
+    height: 44px;
+
+  }
+
+  .van-hairline--top-bottom {
+    /* width: 80%; */
+  }
+
+  .van-tab {
+    padding-left: 20px;
+    /* font-size: 14px; */
+  }
+
+  .van-tabs__nav--line {
+    font-size: 20px;
+  }
+
+  .imtextview {
+    display: flex;
+    padding-top: 20px;
+    font-size: 18px;
+  }
+
+  .linkFont {
+    color: #034692;
+  }
+
+  .van-image--round {
+    vertical-align: middle;
+  }
+
+  .titleMsg {
+    color: #666;
+    font-size: 20px;
+    margin-left: 30px;
+  }
+
+  .rightBar {
+    width: 100px;
+    margin-left: 40px;
+    line-height: 44px;
+    height: 44px;
+
+  }
+
+  .deatail {
+    display: flex;
+    padding-top: 30px;
+    font-size: 18px;
+  }
+
+  .content {
+    display: flex;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 18px;
+  }
+</style>
+<style scoped>
+  .contentList {
+    border-bottom: #DCDCDC 1px solid;
+    padding-bottom: 30px;
+  }
+
+  .imgline {
+    padding-top: 20px;
+  }
+
+  .date {
+    padding-top: 20px;
+    font-size: 18px;
+    color: #999;
+  }
+
+  .leftImage img {
+    width: 240px;
+    height: 136px;
+  }
+
+  .imgMessage {
+    font-size: 18px;
+  }
+
+  .title {
+    /* padding-left: 40px; */
+    font-size: 24px;
+    font-weight: 900;
+    padding-top: 30px;
+  }
+
+  .updown {
+    color: #034692;
+  }
+
+  .rightContent {
+    margin-left: 30px;
+  }
+
+  .tabContainer {
+    display: flex;
+  }
+
+  .leftBar {
+    flex: 1;
+  }
+
+
+
+  body {
+    background: #000;
+  }
+</style>

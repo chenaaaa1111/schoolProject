@@ -26,6 +26,11 @@ const router= new Router({
       component: () => import('@/views/login/index.vue')
     },
     {
+      path: '/forgotPWD',
+      name: 'forgotPWD',
+      component: () => import('@/views/login/ForgetPassWord.vue')
+    },
+    {
       path: '/classes',
       name: 'classes',
       component: () => import('@/views/classes/index2.vue'),

@@ -61,6 +61,14 @@
         methods: {
             login(){
                 var self=this;
+                if(this.phone==''||this.phone==undefined){
+                    this.$toast.fail('请输入手机号');
+                    return;
+                }
+                if(this.password==''){
+                    this.$toast.fail('请输入密码');
+                    return;
+                }
                 var data={
                     mobile:this.phone,
                     LoginPWD:this.password

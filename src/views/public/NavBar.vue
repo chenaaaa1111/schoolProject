@@ -50,8 +50,7 @@
         })
       },
       handleSelect(val) {
-        console.log(val, 'nav menu active')
-        
+        console.log(val, 'val 不见了?')
         this.$emit('getActiveIndex', val)
       },
     }

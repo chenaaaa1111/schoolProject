@@ -3,13 +3,13 @@
     <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="pageContent">
       <el-row>
         <el-col :span="12" class="top-title">
-          华悦蜀山区第一中学
+          {{loadData.title}}
         </el-col>
         <el-col :span="12" class="top-write">
-          <span @click="write"></span>
+          <span v-if="loadData.showWrite" @click="write"></span>
         </el-col>
         <el-col :span="12" class="department">
-          西区初中2019级1班
+          {{loadData.subTitle}}
         </el-col>
         <el-col :span="12" class="leftentry">
           <span class="entrybtns hidden-sm-and-up">
@@ -47,7 +47,7 @@
     methods: {
       write() {
         let data = {
-          name: this.whereami
+          name: this.loadData.activeIndex
         }
         this.$emit('goWrite', data)
       }

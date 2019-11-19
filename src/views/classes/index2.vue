@@ -47,18 +47,42 @@
     methods: {
       spaceChange(data) {
         console.log(data, 'current ????')
-        switch (val) {
+        switch (data) {
           case 'campusHomepage':
             this.currentPage = 'campusHomepage'
+            this.topparams = {
+              title: '华悦蜀山区第一中学',
+              subTitle: '',
+              activeIndex: 'campusHomepage',
+              showWrite: true
+            }
             break;
           case 'classHomepage':
             this.currentPage = 'classHomepage'
+            this.topparams = {
+              title: '2019级2班',
+              subTitle: '',
+              activeIndex: 'classHomepage',
+              showWrite: true
+            }
             break;
           case 'myHomepage':
             this.currentPage = 'myHomepage'
+            this.topparams = {
+              title: '我的个人主页',
+              subTitle: '西区初中2019级1班',
+              activeIndex: 'myHomepage',
+              showWrite: true
+            }
             break;
           default:
             this.currentPage = 'campusHomepage'
+            this.topparams = {
+              title: '华悦蜀山区第一中学',
+              subTitle: '',
+              activeIndex: 'campusHomepage',
+              showWrite: true
+            }
             break;
         }
         this.currentPage = data;

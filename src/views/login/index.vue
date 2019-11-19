@@ -71,7 +71,7 @@
                     if(res.status==200){
                         if(res.data.code==0){
                         localStorage.setItem('Authorization',res.data.data.token);
-                        self.$router.push('/home')
+                        self.$router.push('/')
                     }
                     }
                   

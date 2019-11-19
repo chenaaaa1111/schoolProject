@@ -126,6 +126,9 @@
       changeRouter(name) {
         console.log('name')
       }
+    },
+    mounted:function(){
+      
     }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="currency">
+    <div class="currency" :key="1000">
         <div class="currency-top">
             <el-row type="flex" justify="center">
                 <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="navcol">
@@ -69,7 +69,7 @@
 <style>
 
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
     .currency {
         // min-height: 100%;
         background: url('../../assets/images/classes/classesbg.png') no-repeat;

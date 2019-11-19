@@ -1,32 +1,40 @@
 <template>
   <div class="entry">
-    <HomePage @getActiveIndex="spaceChange"></HomePage>
+    <!-- <HomePage @getActiveIndex="spaceChange"></HomePage> -->
+    <NavBar :activeIndex="currentPage"  @getActiveIndex="spaceChange"></NavBar>
 
-    <pageTop :whereami="currentPage" @goWrite="goWrite"></pageTop>
+    <pageTop :loadData="topparams" @goWrite="goWrite"></pageTop>
     <campusHomepage v-if="currentPage == 'campusHomepage'"></campusHomepage>
 
     <myHomepage v-if="currentPage == 'myHomepage'"></myHomepage>
   </div>
 </template>
 <script>
-  import HomePage from '../public/homePage.vue'
+  import NavBar from '../public/NavBar.vue'
   import pageTop from '../public/pageTop.vue'
   import campusHomepage from './campusHomepage/index.vue'
   import myHomepage from './myHomepage/index.vue'
   export default{
     components: {
-      HomePage,
       pageTop,
       campusHomepage,
-      myHomepage
+      myHomepage,
+      NavBar
     },
     data() {
+      let that = this
       return {
-        currentPage: 'campusHomepage'
+        currentPage: 'campusHomepage',
+        topparams: {
+          title: '华悦蜀山区第一中学',
+          subTitle: '',
+          activeIndex: 'campusHomepage',
+          showWrite: true
+        }
       }
     },
     watch:{
-  　　'$route'(to,from){
+  　　$route(to,from){
         console.log(to,from , 'to == from')
   　　}
     },
@@ -39,6 +47,20 @@
     methods: {
       spaceChange(data) {
         console.log(data, 'current ????')
+        switch (val) {
+          case 'campusHomepage':
+            this.currentPage = 'campusHomepage'
+            break;
+          case 'classHomepage':
+            this.currentPage = 'classHomepage'
+            break;
+          case 'myHomepage':
+            this.currentPage = 'myHomepage'
+            break;
+          default:
+            this.currentPage = 'campusHomepage'
+            break;
+        }
         this.currentPage = data;
       },
       goWrite(data) {

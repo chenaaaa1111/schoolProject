@@ -31,9 +31,9 @@
 <script>
   export default{
     props: {
-      whereami: {
-        type: String,
-        default: ''
+      loadData: {
+        type: Object,
+        default: null
       }
     },
     data() {
@@ -42,7 +42,7 @@
       }
     },
     mounted() {
-      console.log(this.whereami, 'where am i ????')
+      console.log(this.loadData, 'where am i ????')
     },
     methods: {
       write() {

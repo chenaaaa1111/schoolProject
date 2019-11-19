@@ -134,7 +134,7 @@ import 'quill/dist/quill.bubble.css';
       goBack() { // 从哪儿来，回哪儿去
         // this.$store.commit('setSpaceInitTab', this.$route.query.fromwhere)
         this.$router.push({
-          path: '/classes'
+          path: '/campusHomepage'
         })
       },
       handleRemove(file) {

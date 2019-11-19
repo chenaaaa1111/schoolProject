@@ -60,12 +60,21 @@
         }),
         methods: {
             login(){
+                var self=this;
                 var data={
                     mobile:this.phone,
                     LoginPWD:this.password
                 }
                 request.post('/roomapi/Login/Loginpwd',data,function(res){
                     console.log('返回res',res);
+                    debugger
+                    if(res.status==200){
+                        if(res.data.code==0){
+                        localStorage.setItem('Authorization',res.data.data.token);
+                        self.$router.push('/home')
+                    }
+                    }
+                  
                 })
             }
         }

@@ -1,9 +1,23 @@
 import axios from 'axios';
+// 添加请求拦截器，在请求头中加token
+axios.interceptors.request.use(
+    config => {
+        console.log('config',config,config.data.mobile);
+      if (localStorage.getItem('Authorization')) {
+        config.data.token = localStorage.getItem('Authorization');
+      }else{
+          console.log('this',this)
+      }
+   
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    });
 var request={
     post:function(url,data,callBack){
         // var baseUrl="http://school.i2f2f.com";
         var baseUrl=" http://localhost:8081" ;
-
         axios({
             
                 method: 'post',

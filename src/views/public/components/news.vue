@@ -7,12 +7,19 @@
       </span>
     </div>
     <ul class="newList">
-      <li v-for="(item,index) in newsList"><span class="text">{{item.title}}</span><span class="date" :key="index">{{item.date}}</span></li>
+      <li @click="getNewsContent(item)" v-for="(item,index) in newsList"><span class="text">{{item.title}}</span><span class="date" :key="index">{{item.date}}</span></li>
     </ul>
   </el-card>
 </template>
 <script>
   export default{
+    name: 'news',
+    props: {
+      fromwhere: {
+        type: String,
+        default: ''
+      }
+    },
     data() {
       return {
         newsList: [
@@ -39,8 +46,20 @@
         ],
       }
     },
+    mounted() {
+      console.log(this.fromwhere, 'news 组件接收到传值')
+    },
     methods: {
-
+      getNewsContent(row) {
+        console.log(row, '??????')
+        this.$router.push({
+          name: 'readNews',
+          params: {
+            info: JSON.stringify(row),
+            fromwhere: this.fromwhere
+          }
+        })
+      },
     }
   }
 </script>

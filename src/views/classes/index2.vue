@@ -4,9 +4,10 @@
     <NavBar :activeIndex="currentPage"  @getActiveIndex="spaceChange"></NavBar>
 
     <pageTop :loadData="topparams" @goWrite="goWrite"></pageTop>
-    <campusHomepage v-if="currentPage == 'campusHomepage'"></campusHomepage>
+    <campusHomepage :loadData="topparams" v-if="currentPage == 'campusHomepage'" @otherClass="toOtherClass"></campusHomepage>
     <classHomepage v-if="currentPage == 'classHomepage'"></classHomepage>
     <myHomepage v-if="currentPage == 'myHomepage'"></myHomepage>
+    <OtherClassPages :loadData="topparams" v-if="currentPage == 'OtherClassPages'"></OtherClassPages>
   </div>
 </template>
 <script>
@@ -15,13 +16,15 @@
   import campusHomepage from './campusHomepage/index.vue'
   import classHomepage from './classHomepage/index.vue'
   import myHomepage from './myHomepage/index.vue'
+  import OtherClassPages from './otherClassPages/index.vue'
   export default{
     components: {
       pageTop,
       campusHomepage,
       classHomepage,
       myHomepage,
-      NavBar
+      NavBar,
+      OtherClassPages
     },
     data() {
       let that = this
@@ -107,6 +110,17 @@
             pageName: this.topparams.pageName
           }
         })
+      },
+      toOtherClass(name) { // 去别人的班级逛逛
+        this.currentPage = 'OtherClassPages',
+        this.topparams = {
+          url: require('../../assets/images/class_else.png'),
+          title: name,
+          subTitle: '',
+          activeIndex: 'classHomepage',
+          pageName: '别人的班级',
+          showWrite: false
+        }
       },
     }
   }

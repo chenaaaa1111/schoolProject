@@ -1,6 +1,6 @@
 <template>
   <div class="currency">
-    <WriteBar @publish="overWrite"></WriteBar>
+    <WriteBar @publish="overWrite" :loadInfo="writeBarInfo"></WriteBar>
     <div class="currency-top" v-if="false">
       <el-row type="flex" justify="center">
         <el-col  :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="navcol">
@@ -145,6 +145,10 @@ import WriteBar from '../public/writeBar.vue'
     },
     data() {
       return {
+        writeBarInfo: {
+          barTitle: '写新闻',
+          showWrite: true
+        },
         activeIndex: 'campusHomepage',
         fit: 'cover',
         url: require('../../assets/images/user.png'),

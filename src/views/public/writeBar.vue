@@ -5,7 +5,7 @@
           <li class="homeEntry" @click="goHome">
             <img src="../../assets/main/classes.png" />班级空间
           </li>
-          <el-menu-item class="brandTitle" index="writenews" disabled>写新闻</el-menu-item>
+          <el-menu-item class="brandTitle" index="writenews" disabled>{{loadInfo.barTitle}}</el-menu-item>
           <li class="nav-user">
             <el-dropdown trigger="click">
                 <span class="el-dropdown-link">
@@ -19,7 +19,7 @@
             </el-dropdown>
           </li>
           <li class="el-menu-item menu-release">
-              <el-button plan @click="release">发布</el-button>
+              <el-button v-if="loadInfo.showWrite" plan @click="release">发布</el-button>
           </li>
       </el-menu>
     </el-col>
@@ -27,6 +27,13 @@
 </template>
 <script>
   export default{
+    name: 'writeBar',
+    props: {
+      loadInfo: {
+        type: Object,
+        default: null
+      }
+    },
     data() {
       return {
         fit: 'cover',

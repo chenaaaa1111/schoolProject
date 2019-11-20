@@ -9,7 +9,7 @@
                 </div> -->
                 <ul class="avatarImg" ref="phoneImg">
                          <li>
-                             <span>学生主页0</span>
+                             <span>学生主页0122</span>
                          </li>
                         <li >
                             <img src="./../../../assets/images/user.png" alt="用户" class="pho_avatot"><span>姓名</span>

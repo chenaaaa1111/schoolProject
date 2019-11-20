@@ -1,314 +1,213 @@
+<!-- 别人的班级主页 -->
 <template>
-  <el-row class="curreBody">
-    <el-col>
-      <el-row  type="flex" justify="center" class="body-top">
-        <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24">
-          <el-row >
-            <el-col :span="16" class="schoolName">华悦蜀山区第一中学</el-col>
-            <el-col :span="8" class="write">
-              <el-button type="default">写新闻</el-button>
+    <div class="container" style="margin-top: 22px;">
+        <el-row justify="center" type="flex">
+            <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24">
+                <!-- <div class="logo" style="position: relative;">
+                    <img src="./../../../assets/images/class_else.png" alt=""><span>2019 級二班</span>
+                    <van-icon name="apps-o" class="phoneYidong" @click="showSlide" />
+                </div> -->
+                <ul class="avatarImg" ref="phoneImg">
+                         <li>
+                             <span>学生主页0</span>
+                         </li>
+                        <li >
+                            <img src="./../../../assets/images/user.png" alt="用户" class="pho_avatot"><span>姓名</span>
+                        </li>
+                        <li>
+                            <img src="./../../../assets/images/user.png" alt="用户" class="pho_avatot"><span>姓名</span>
+                        </li>
+                        <li>
+                            <img src="./../../../assets/images/user.png" alt="用户" class="pho_avatot"><span>姓名</span>
+                        </li>
+                        <li>
+                            <img src="./../../../assets/images/user.png" alt="用户" class="pho_avatot"><span>姓名</span>
+                        </li>
+                    </ul>
             </el-col>
-          </el-row>
-          <el-row >
-            <el-col :span="24">
-              <div class="hideWrap">
-                <span class="hidden-sm-and-up">
-                  <el-button type="danger" circle>
-                    <img class="btnicon" src="../../../assets/images/classes/news.png"/>
-                  </el-button>
-                  <el-button type="primary" circle>
-                    <img class="btnicon" src="../../../assets/images/classes/space.png"/>
-                  </el-button>
-                  <el-button type="primary" circle>
-                    <img class="btnicon" src="../../../assets/images/classes/notice.png"/>
-                  </el-button>
-                </span>
-              </div>
-            </el-col>
-          </el-row>
-        </el-col>
-      </el-row>
-      <el-row type="flex" justify="center">
-        <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24">
-          <el-row :gutter="10" class="colblock">
-            <el-col :xl="6" :lg="6" :md="8" :sm="8" class="panel-left hidden-xs-only">
-              <!-- 学校新闻动态 -->
-              <el-card class="banner-card">
-                <div slot="header" class="clearfix">
-                  <span class="cardTitle"><img src="../../../assets/images/classes/news.png"/>学生主页</span>
-                  <span class="more">
-                    <img src="../../../assets/images/classes/more.png"/>
-                  </span>
-                </div>
-                <ul class="newList">
-                  <li v-for="(item,index) in newsList"><span class="text">{{item.title}}</span><span class="date" :key="index">{{item.date}}</span></li>
-                </ul>
-              </el-card>
-              <!-- 班级空间 -->
-              <el-card class="banner-card">
-                <div slot="header" class="clearfix">
-                  <span class="cardTitle"><img src="../../../assets/images/classes/space.png"/>班级空间</span>
-                  <span class="more">
-                    <img src="../../../assets/images/classes/more.png"/>
-                  </span>
-                </div>
-                <div class="areablock" v-for="(item,index) in areaList" :key="index">
-                  <div class="areaName">{{item.areaName}}</div>
-                  <ul class="area">
-                    <li v-for="(res,num) in item.classes" :key="num">{{res}}</li>
-                  </ul>
-                </div>
-              </el-card>
-              <!-- 通知公告 -->
-              <el-card class="banner-card">
-                <div slot="header" class="clearfix">
-                  <span class="cardTitle"><img src="../../../assets/images/classes/notice.png"/>通知公告</span>
-                  <span class="more">
-                    <span class="text">全部</span><img src="../../../assets/images/classes/more.png"/>
-                  </span>
-                </div>
-                <ul class="notice">
-                  <li v-for="(item,index) in noticeList" :key="index">
-                    <div class="noticeTitle">{{item.title}}</div>
-                    <div class="noticeDate">{{item.date}}</div>
-                  </li>
-                </ul>
-              </el-card>
-            </el-col>
-            <el-col :xl="18" :lg="18" :md="16" :sm="16" :xs="24"><el-card>
-                <mainNavBar>
 
-                </mainNavBar>
-            </el-card></el-col>
-          </el-row>
-        </el-col>
-      </el-row>
-    </el-col>
-  </el-row>
+        </el-row>
+        <el-row justify="center" type="flex">
+            <el-col :xl="18" :lg="18" :md="20" :sm="24" :xs="24" style="position: relative;padding: 0px 10px;">
+                <el-row :gutter="10">
+                    <!-- <div class="mainContent"> -->
+                    <el-col :xl="6" :lg="6" :md="8" :sm="8">
+                        <div class="slidbar" ref="slidbar">
+                            <LeftPhotoLIst></LeftPhotoLIst>
+                        </div>
+                        <div class="slidbar2" ref="slidbar2">
+                            <LeftPhotoLIst></LeftPhotoLIst>
+                        </div>
+                    </el-col>
+                    <el-col :xl="18" :lg="18" :md="16" :sm="16">
+                        <el-card class="content">
+                            <mainNavBar></mainNavBar>
+                        </el-card>
+                    </el-col>
+
+
+                    <!-- </div> -->
+
+                </el-row>
+
+            </el-col>
+
+        </el-row>
+
+    </div>
+
 </template>
 <script>
-  import mainNavBar from '@/components/mainNavBar';
-  export default{
-    data() {
-      return {
-        newsList: [
-          {
-            title: '激动人心的运动会',
-            date: '04-02'
-          },
-          {
-            title: '激动人心的运动会',
-            date: '04-06'
-          },
-          {
-            title: '激动人心的运动会激动人心的运动会',
-            date: '04-09'
-          },
-          {
-            title: '激动人心的运动会',
-            date: '05-02'
-          },
-          {
-            title: '激动人心的运动会激动人心的运动会',
-            date: '05-08'
-          },
-        ],
-        areaList:[
-          {
-            areaName: '东区',
-            classes: ['19级1班','19级2班','19级3班','19级4班','19级5班','19级6班','19级7班','19级8班']
-          },
-          {
-            areaName: '西区',
-            classes: ['19级1班','19级2班','19级3班','19级4班','19级5班','19级6班','19级7班','19级8班']
-          },
-          {
-            areaName: '南区',
-            classes: ['19级1班','19级2班','19级3班','19级4班','19级5班','19级6班','19级7班','19级8班']
-          }
-        ],
-        noticeList: [
-          {
-            title: '沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警',
-            date: '2019-11-11'
-          },
-          {
-            title: '沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警沈家门第四小学20',
-            date: '2019-11-11'
-          },
-          {
-            title: '沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警沈家门第四',
-            date: '2019-11-11'
-          },
-          {
-            title: '沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警沈家门第四小学2019学校安全工作一号预警',
-            date: '2019-11-11'
-          },
-        ]
-      }
-    },
-    methods: {
+    import homePage from '@/views/public/homePage';
+    import LeftPhotoLIst from '@/components/LeftPhotoLIst';
+    import mainNavBar from '@/components/mainNavBar';
+    import 'element-ui/lib/theme-chalk/display.css';
+    import request from '@/api/request.js';
+    export default {
+        name: 'otherClassPageIndex',
+        data() {
+            return {
 
-    },
-    components:{
-      mainNavBar
+            }
+        },
+        methods: {
+            showSlide: function () {
+                var dis = this.$refs.phoneImg.style.display;
+                if (dis == 'none') {
+                    this.$refs.phoneImg.style.display = "block";
+                } else {
+                    this.$refs.phoneImg.style.display = "none";
+                }
+            }
+        },
+        mounted(){
+            var data={
+                column:0,
+                class:1
+            }
+            request.post('/roomapi/Room_Class/classPage',data)
+        },
+        components: {
+            homePage,
+            LeftPhotoLIst,
+            mainNavBar
+        }
     }
-  }
+
 </script>
-<style media="screen" lang="scss" scoped>
-.curreBody{
-  padding:20px;
-}
-  .justdemo{
-    height: 100px;background: #5098DF;
-  }
-  .body-top{
-    margin-top: 48px;
-    margin-left:.2rem;
-    .schoolName{
-      color: #034692;
-      height: 1rem;
-      font-size: 50px;
-      display: flex;
-      align-items: center;
-    }
-    .write{
-      height: 1rem;
-      text-align: right;
-      display: flex;
-      align-items: center;
-    }
-    .hideWrap{
-      padding-right:20px;
-      height: 84px;
-      text-align: right;
-      display: flex;
-      align-items: center;
-      justify-content:flex-end;
-      .btnicon{
-        width: 45px;
-        height: 45px;
-      }
-      .el-button.is-circle{
-        padding: 0px;
-      }
-    }
-  }
-  .colblock{
-    margin-top: 20px;
-    .panel-left{
-      .banner-card{
-        margin-bottom: 12px;
-        .cardTitle{
-          font-size: 24px;
-          font-weight: 500;
-          img{
-            display: inline-block;
-            width: 38px;
-            height: 38px;
-            vertical-align: middle;
-            margin-right: 10px;
-          }
-        }
-        .more{
-          float: right;
-          display: block;
-          // width: 16px;
-          height: 16px;
-          cursor: pointer;
-          margin-top: 0.1rem;
-          .text{
-            position: relative;
-            top: 2px;
-            margin-right: 10px;
-            color: #888;
-          }
-          img{
-            display: inline;
-            width: 18px;
-            vertical-align: middle;
-          }
-        }
-        .newList{
-          list-style: none;
-          li{
-            padding: 16px 20px 16px 18px;
-            margin-left: 20px;
-            font-size: 18px;
-            background: url('../../../assets/images/classes/dotg.png') no-repeat 0px center;
-            background-size: 8px 8px;
-            cursor: pointer;
-            position: relative;
-            border-bottom: 1px dashed #DEDEDE;
-            .text{
-              display: block;
-              margin-right: 80px;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-            .date{
-              position: absolute;
-              width: 80px;
-              top: 17px;
-              right: 0;
-              color: #888888;
-            }
-          }
-          li:hover{
-            color: #034692;
-            background-image: url('../../../assets/images/classes/dot.png');
-          }
-        }
-        .areablock{
-          .areaName{
-            font-size: 22px;
-            font-weight: 500;
-            margin-bottom: 10px;
-          }
-          .area{
-            list-style: none;
-            margin-bottom: 30px;
-            li{
-              float: left;
-              width: 33.333%;
-              padding: 8px 0px;
-              font-size: 18px;
-            }
-            li:hover{
-              color: #034692;
-              cursor: pointer;
-            }
-          }
-          .area::after{
-            content: "";
-            display: block;
-            height: 0;
-            clear: both;
-          }
-        }
-        .notice{
-          font-size: 18px;
-          li{
-            padding: 8px 0px;
-            line-height: 30px;
-            border-bottom: 1px dashed #DEDEDE;
-            .noticeTitle{
-              overflow:hidden;
-              text-overflow:ellipsis;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
-              overflow: hidden;
-            }
-            .noticeDate{
-              text-align: right;
-              color: #888888;
-            }
-          }
-        }
-      }
-    }
-  }
+<style>
+    @media screen and (max-width: 600px) {
+        .slidbar {
+            display: none !important;
 
+        }
+
+        .phoneYidong {
+            visibility: visible !important;
+        }
+
+        .mainContent {
+            padding-left: 10px !important;
+        }
+    }
+</style>
+<style lang="scss">
+  .content{
+    .el-card__body{
+      padding: 0
+    }
+  }
+</style>
+<style lang="scss" scoped>
+    .pho_avatot{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+
+    }
+    .avatarImg{
+        display: none;
+    width: 100%;
+    overflow-y: scroll;
+    background: #fff;
+    height: 5.333333rem;
+    top: 130px;
+    z-index: 99;
+    position: absolute;
+    padding-bottom: 0.266667rem;
+
+    }
+    .avatarImg li{
+      height: 80px;
+      line-height: 80px;
+      padding-left: 40px;
+      border-bottom: 1px solid #999999;
+    }
+    .avatarImg li img,.avatarImg li span{
+     vertical-align: middle;
+    }
+    .avatarImg li span{
+       margin-left: 40px;
+    }
+    .logo {
+        padding-left: 40px;
+    }
+
+    .phoneYidong {
+        position: absolute;
+        font-size: 30px;
+        top: 100px;
+        left: 1.8rem;
+        color: green;
+        visibility: hidden;
+    }
+
+    .slidbar2 {
+        display: none;
+    }
+
+    .slidbar {
+        /* width: 280px; */
+        /* margin-right: 10px; */
+        /* background: #fff; */
+        /* position: absolute; */
+        left: 12px;
+        z-index: 99;
+    }
+
+    .content {
+        flex: 1;
+        background: #fff;
+    }
+
+    .mainContent {
+        background: rgba(255, 255, 255, 0.34);
+        padding: 10px 20px 20px 20px;
+        /* padding-left: 300px; */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .logo img {
+        width: 74px;
+        height: 74px;
+        vertical-align: middle;
+    }
+
+    .logo {
+        padding-top: 38px;
+        padding-bottom: 62px;
+    }
+
+    .container {
+        /* max-width: 1240px; */
+        margin: 0 auto;
+    }
+
+    .logo span {
+        font-size: 40px;
+        vertical-align: middle;
+        margin-left: 30px;
+        color: #034692;
+    }
 </style>

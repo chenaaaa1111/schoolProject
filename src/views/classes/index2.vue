@@ -5,7 +5,7 @@
 
     <pageTop :loadData="topparams" @goWrite="goWrite"></pageTop>
     <campusHomepage v-if="currentPage == 'campusHomepage'"></campusHomepage>
-
+    <classHomepage v-if="currentPage == 'classHomepage'"></classHomepage>
     <myHomepage v-if="currentPage == 'myHomepage'"></myHomepage>
   </div>
 </template>
@@ -13,11 +13,13 @@
   import NavBar from '../public/NavBar.vue'
   import pageTop from '../public/pageTop.vue'
   import campusHomepage from './campusHomepage/index.vue'
+  import classHomepage from './classHomepage/index.vue'
   import myHomepage from './myHomepage/index.vue'
   export default{
     components: {
       pageTop,
       campusHomepage,
+      classHomepage,
       myHomepage,
       NavBar
     },
@@ -29,6 +31,7 @@
           title: '华悦蜀山区第一中学',
           subTitle: '',
           activeIndex: 'campusHomepage',
+          pageName: '校园主页',
           showWrite: true
         }
       }
@@ -42,7 +45,10 @@
       console.log(this.currentPage,'重新加载 writebackpage')
     },
     mounted() {
-
+      console.log(this.$store.state, 'store 里面有啥')
+      if(this.$store.state.spaceInitTab != '') {
+        this.currentPage = this.$store.state.spaceInitTab
+      }
     },
     methods: {
       spaceChange(data) {
@@ -54,16 +60,19 @@
               title: '华悦蜀山区第一中学',
               subTitle: '',
               activeIndex: 'campusHomepage',
+              pageName: '校园主页',
               showWrite: true
             }
             break;
           case 'classHomepage':
             this.currentPage = 'classHomepage'
             this.topparams = {
+              url: require('../../assets/images/class_else.png'),
               title: '2019级2班',
               subTitle: '',
               activeIndex: 'classHomepage',
-              showWrite: true
+              pageName: '我的班级',
+              showWrite: false
             }
             break;
           case 'myHomepage':
@@ -72,6 +81,7 @@
               title: '我的个人主页',
               subTitle: '西区初中2019级1班',
               activeIndex: 'myHomepage',
+              pageName: '我的主页',
               showWrite: true
             }
             break;
@@ -81,6 +91,7 @@
               title: '华悦蜀山区第一中学',
               subTitle: '',
               activeIndex: 'campusHomepage',
+              pageName: '校园主页',
               showWrite: true
             }
             break;
@@ -91,9 +102,10 @@
         console.log(data, 'from write')
         this.$router.push({
           name: 'writenews',
-          // query: {
-          //   fromwhere: data.name
-          // }
+          query: {
+            fromwhere: data.name,
+            pageName: this.topparams.pageName
+          }
         })
       },
     }

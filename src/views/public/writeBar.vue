@@ -1,18 +1,11 @@
 <template>
   <el-row class="page-header" type="flex" justify="center">
     <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="nav-col">
-      <el-menu :default-active="activeIndex" class="el-menu-head" mode="horizontal"
-          @select="handleSelect">
+      <el-menu :default-active="activeIndex" class="el-menu-head" mode="horizontal">
           <li class="homeEntry" @click="goHome">
             <img src="../../assets/main/classes.png" />班级空间
           </li>
-          <el-menu-item index="campusHomepage">校园主页</el-menu-item>
-          <el-menu-item index="classHomepage">我的班级</el-menu-item>
-          <el-menu-item index="myHomepage">我的主页</el-menu-item>
-          <li class="el-menu-item menu-search hidden-sm-and-down">
-              <el-input type="text" suffix-icon="el-icon-search"></el-input>
-          </li>
-          <!-- 待改进 -->
+          <el-menu-item class="brandTitle" index="writenews" disabled>写新闻</el-menu-item>
           <li class="nav-user">
             <el-dropdown trigger="click">
                 <span class="el-dropdown-link">
@@ -25,22 +18,20 @@
                 </el-dropdown-menu>
             </el-dropdown>
           </li>
+          <li class="el-menu-item menu-release">
+              <el-button plan @click="release">发布</el-button>
+          </li>
       </el-menu>
     </el-col>
   </el-row>
 </template>
 <script>
   export default{
-    props: {
-      activeIndex: {
-        type: String,
-        default: ''
-      }
-    },
     data() {
       return {
         fit: 'cover',
-        url: require('../../assets/images/user.png')
+        url: require('../../assets/images/user.png'),
+        activeIndex: ''
       }
     },
     methods: {
@@ -49,10 +40,9 @@
           name: 'home'
         })
       },
-      handleSelect(val) {
-        console.log(val, 'val 不见了?')
-        this.$emit('getActiveIndex', val)
-      },
+      release() {
+        this.$emit('publish', true)
+      }
     }
   }
 </script>
@@ -66,6 +56,18 @@
     .nav-col{
       padding: 0px 10px;
       .el-menu-head{
+        .menu-release{
+          float: right;
+          .el-button{
+            font-size: 22px;
+            font-weight: 500;
+          }
+        }
+        .brandTitle{
+          cursor: default;
+          color: #333;
+          opacity: 1;
+        }
         .homeEntry{
           cursor: pointer;
           float: left;

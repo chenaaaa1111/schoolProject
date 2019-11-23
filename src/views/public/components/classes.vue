@@ -9,7 +9,7 @@
     <div class="areablock" v-for="(item,index) in areaList" :key="index">
       <div class="areaName">{{item.areaName}}</div>
       <ul class="area">
-        <li v-for="(res,num) in item.classes" :key="num">{{res}}</li>
+        <li v-for="(res,num) in item.classes" :key="num" @click="chooseClass(res)">{{res}}</li>
       </ul>
     </div>
   </el-card>
@@ -35,7 +35,9 @@
       }
     },
     methods: {
-
+      chooseClass(name) {
+        this.$emit('chooseClasses',name)
+      },
     }
   }
 </script>

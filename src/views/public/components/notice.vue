@@ -7,7 +7,7 @@
       </span>
     </div>
     <ul class="notice">
-      <li v-for="(item,index) in noticeList" :key="index">
+      <li v-for="(item,index) in noticeList" :key="index" >
         <div class="noticeTitle">{{item.title}}</div>
         <div class="noticeDate">{{item.date}}</div>
       </li>
@@ -16,6 +16,12 @@
 </template>
 <script>
   export default{
+    props: {
+      fromwhere: {
+        type: String,
+        default: ''
+      }
+    },
     data() {
       return {
         noticeList: [
@@ -37,6 +43,9 @@
           },
         ]
       }
+    },
+    mounted() {
+      console.log('where is am i ???')
     },
     methods: {
 

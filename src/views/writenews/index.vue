@@ -1,6 +1,7 @@
 <template>
   <div class="currency">
-    <div class="currency-top">
+    <WriteBar @publish="overWrite" :loadInfo="writeBarInfo"></WriteBar>
+    <div class="currency-top" v-if="false">
       <el-row type="flex" justify="center">
         <el-col  :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="navcol">
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
@@ -30,7 +31,7 @@
       <el-row type="flex" justify="center">
         <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24">
           <el-card class="edit-card">
-            <el-page-header @back="goBack" title="返回我的主页"></el-page-header>
+            <el-page-header @back="goBack" :title="'返回'+prevPageName"></el-page-header>
             <el-row>
               <el-col :span="24" class="formrow">
                 <div class="upload-box">
@@ -91,6 +92,41 @@
         </el-col>
       </el-row>
     </div>
+    <el-dialog
+      title="发布"
+      :visible.sync="dialog"
+      width="30%"
+      class="mydialog"
+      :before-close="handleClose">
+      <div>
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="发布主题" prop="theme">
+            <el-select v-model="ruleForm.theme" filterable placeholder="选择主页" style="width: 100%;">
+              <el-option
+                v-for="(item,index) in options"
+                :key="index"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="选择栏目" prop="column">
+            <el-select v-model="ruleForm.column" filterable placeholder="选择栏目" style="width: 100%;">
+              <el-option label="影评" value="1"></el-option>
+              <el-option label="专业" value="2"></el-option>
+              <el-option label="考试" value="3"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div class="tips">
+          发布到校园主页需要审核后才能发布成功，发布到班级主页不需要审核
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="handleClose">取 消</el-button>
+        <el-button type="primary" @click="dialog = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -101,12 +137,18 @@ import { quillEditor } from "vue-quill-editor"; //调用编辑器
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
+import WriteBar from '../public/writeBar.vue'
   export default{
     components: {
-      quillEditor
+      quillEditor,
+      WriteBar
     },
     data() {
       return {
+        writeBarInfo: {
+          barTitle: '写新闻',
+          showWrite: true
+        },
         activeIndex: 'campusHomepage',
         fit: 'cover',
         url: require('../../assets/images/user.png'),
@@ -116,7 +158,35 @@ import 'quill/dist/quill.bubble.css';
         form:{
           goods_desc: ''
         },
-        editorOption: {}
+        editorOption: {},
+        prevPageName: '',
+        dialog: false,
+        ruleForm:{
+          theme: '',
+          column: ''
+        },
+        rules:{
+          theme: [
+            { required: true, message: '请选择主页', trigger: 'change' }
+          ],
+          column: [
+            { required: true, message: '请选择栏目', trigger: 'change' }
+          ],
+        },
+        options: [
+          {
+            value: '0',
+            label: '校园主页'
+          },
+          {
+            value: '1',
+            label: '班级主页'
+          },
+          {
+            value: '2',
+            label: '我的主页'
+          }
+        ],
       }
     },
     computed: {
@@ -125,14 +195,15 @@ import 'quill/dist/quill.bubble.css';
       },
     },
     mounted() {
-      console.log(this.$route.query.fromwhere, 'fromwhere ?????')
+      this.prevPageName = this.$route.query.pageName
+      console.log(this.$route.query, 'write news page query value')
     },
     methods: {
       handleSelect(val) {
         this.activeIndex = val
       },
       goBack() { // 从哪儿来，回哪儿去
-        // this.$store.commit('setSpaceInitTab', this.$route.query.fromwhere)
+        this.$store.commit('setSpaceInitTab', this.$route.query.fromwhere)
         this.$router.push({
           path: '/campusHomepage'
         })
@@ -154,6 +225,12 @@ import 'quill/dist/quill.bubble.css';
       }, // 失去焦点事件
       onEditorFocus(){}, // 获得焦点事件
       onEditorChange(){}, // 内容改变事件
+      overWrite(data) { // 发表文章
+        this.dialog = true
+      },
+      handleClose() {
+        this.dialog = false
+      },
     }
   }
 </script>
@@ -242,5 +319,16 @@ import 'quill/dist/quill.bubble.css';
         }
       }
     }
+    .mydialog{
+      .el-dialog{
+        min-width: 9.733333rem;
+      }
+      .tips{
+        font-size: 18px;
+        color: #999;
+        padding-left: 0.58rem;
+      }
+    }
+
   }
 </style>

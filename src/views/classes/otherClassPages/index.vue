@@ -1,15 +1,15 @@
 <!-- 别人的班级主页 -->
 <template>
-    <div class="container">
+    <div class="container" style="margin-top: 22px;">
         <el-row justify="center" type="flex">
             <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24">
-                <div class="logo" style="position: relative;">
+                <!-- <div class="logo" style="position: relative;">
                     <img src="./../../../assets/images/class_else.png" alt=""><span>2019 級二班</span>
-                    <van-icon name="apps-o" class="phoneYidong" @click="showSlide" />                  
-                </div>
+                    <van-icon name="apps-o" class="phoneYidong" @click="showSlide" />
+                </div> -->
                 <ul class="avatarImg" ref="phoneImg">
                          <li>
-                             <span>学生主页</span>
+                             <span>学生主页0122</span>
                          </li>
                         <li >
                             <img src="./../../../assets/images/user.png" alt="用户" class="pho_avatot"><span>姓名</span>
@@ -28,8 +28,8 @@
 
         </el-row>
         <el-row justify="center" type="flex">
-            <el-col :xl="18" :lg="18" :md="20" :sm="24" :xs="24" style="position: relative;">
-                <el-row>
+            <el-col :xl="18" :lg="18" :md="20" :sm="24" :xs="24" style="position: relative;padding: 0px 10px;">
+                <el-row :gutter="10">
                     <!-- <div class="mainContent"> -->
                     <el-col :xl="6" :lg="6" :md="8" :sm="8">
                         <div class="slidbar" ref="slidbar">
@@ -40,9 +40,9 @@
                         </div>
                     </el-col>
                     <el-col :xl="18" :lg="18" :md="16" :sm="16">
-                        <div class="content">
+                        <el-card class="content">
                             <mainNavBar></mainNavBar>
-                        </div>
+                        </el-card>
                     </el-col>
 
 
@@ -111,7 +111,14 @@
         }
     }
 </style>
-<style>
+<style lang="scss">
+  .content{
+    .el-card__body{
+      padding: 0
+    }
+  }
+</style>
+<style lang="scss" scoped>
     .pho_avatot{
         width: 30px;
         height: 30px;
@@ -131,7 +138,7 @@
 
     }
     .avatarImg li{
-      height: 80px; 
+      height: 80px;
       line-height: 80px;
       padding-left: 40px;
       border-bottom: 1px solid #999999;
@@ -161,8 +168,8 @@
 
     .slidbar {
         /* width: 280px; */
-        margin-right: 10px;
-        background: #fff;
+        /* margin-right: 10px; */
+        /* background: #fff; */
         /* position: absolute; */
         left: 12px;
         z-index: 99;

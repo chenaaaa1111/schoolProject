@@ -4,9 +4,9 @@
       <el-row :gutter="10" class="panel-row">
         <el-col :xl="6" :lg="6" :md="8" :sm="8" class="panel-left hidden-xs-only">
           <!-- 学校新闻动态 -->
-          <News></News>
+          <News :fromwhere="loadData.activeIndex"></News>
           <!-- 班级空间-侧边栏 -->
-          <Classes></Classes>
+          <Classes @chooseClasses="getClassName"></Classes>
           <!-- 通知公告 -->
           <Notice></Notice>
         </el-col>
@@ -31,16 +31,25 @@
       Classes,
       Notice
     },
+    props: {
+      loadData: {
+        type: Object,
+        default: null
+      }
+    },
     data() {
       return {
 
       }
     },
     mounted() {
-      console.log('有没有走组件本身生命周期?')
+      console.log(this.loadData.activeIndex, '哪个页面引用了这个公共组件')
     },
     methods: {
-
+      getClassName(name) {
+        console.log(name, '选中的班级')
+        this.$emit('otherClass', name)
+      },
     }
   }
 </script>

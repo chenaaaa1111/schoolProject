@@ -3,7 +3,7 @@
     <el-col :xl="18" :lg="18" :md="20" :sm="22" :xs="24" class="pageContent">
       <el-row>
         <el-col :span="12" class="top-title">
-          {{loadData.title}}
+          <img v-if="loadData.url" :src="loadData.url" alt=""/>{{loadData.title}}
         </el-col>
         <el-col :span="12" class="top-write">
           <span v-if="loadData.showWrite" @click="write"></span>
@@ -11,7 +11,7 @@
         <el-col :span="12" class="department">
           {{loadData.subTitle}}
         </el-col>
-        <el-col :span="12" class="leftentry">
+        <el-col :span="loadData.subTitle != ''?12: 24" class="leftentry">
           <span class="entrybtns hidden-sm-and-up">
             <el-button type="danger" circle>
               <img class="btnicon" src="../../assets/images/classes/news.png"/>
@@ -64,6 +64,13 @@
         padding-left: 10px;
         font-size: 30px;
         color: #034692;
+        img{
+          display: inline-block;
+          width: 74px;
+          height: 74px;
+          vertical-align: middle;
+          margin-right: 30px;
+        }
       }
       .top-write{
         height: 56px;

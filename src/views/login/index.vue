@@ -8,8 +8,8 @@
 
                 <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
             </van-cell-group>
-            <p style="text-align: right;">忘记密码</p>
-            <van-button type="default" class="submitLogin" @click="login" >登录</van-button>
+            <p style="text-align: right;" @click="forgetPass">忘记密码</p>
+            <van-button type="default" class="submitLogin" @click="login"  >登录</van-button>
 
         </div>
     </div>
@@ -31,6 +31,8 @@
     .submitLogin{
         width: 100%;
         margin-top: 100px;
+        background: #034692;
+        color: #fff;
     }
     .tx_center{
         text-align: center;
@@ -59,6 +61,9 @@
             password:''
         }),
         methods: {
+            forgetPass(){
+                this.$router.push('/forgotPWD')
+            },
             login(){
                 var self=this;
                 if(this.phone==''||this.phone==undefined){

@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div class="loginContent">
-            <p class="tx_center">找回密码</p>
+            <p class="tx_center">注册账号</p>
             <van-cell-group>
                 <van-field v-model="phone" required clearable label="手机号" placeholder="请输入手机号" />
                 <div style="position: relative;padding-top: 10px;margin-bottom: 10px;">
@@ -10,17 +10,24 @@
                 </div>
 
 
-                <van-field v-model="password" :type="isShow?'text':'password'" label="设置新密码" :right-icon="isShow?'eye-o':'closed-eye'"
+                <van-field v-model="password" :type="isShow?'text':'password'" label="密码" :right-icon="isShow?'eye-o':'closed-eye'"
                 @click-right-icon="showPass"
-                 placeholder="设置新密码" required />
+                 placeholder="设置密码" required />
 
             </van-cell-group>
-            <van-button type="default" class="submitLogin" @click="login">登录</van-button>
+            <van-button type="default" class="submitLogin" @click="login">下一步</van-button>
+            <p class="pcenter bodP">已有账号？<a href="javascript:void(0)" @click="goLogin" >立即登录</a> </p>
 
         </div>
     </div>
 </template>
 <style scoped>
+    .bodP{
+        margin-top: 30px;
+    }
+    .pcenter{
+        text-align: center;
+    }
     .loginContent {
         width: 50%;
         height: 800px;
@@ -81,6 +88,7 @@
         },
         methods: {
             sendCode(){
+                debugger
                 var self=this;
                 var data = {
                     mobile: this.phone
@@ -105,6 +113,9 @@
 
                 })
             },
+            goLogin(){
+                this.$router.push('/login')
+            },
             showPass(){
                 this.isShow=!this.isShow;
                 console.log(this.isShow)
@@ -121,15 +132,20 @@
                 }
                 var data = {
                     mobile: this.phone,
-                    LoginPWD: this.password
+                    LoginPWD: this.password,
+                    code:this.veryCode,
                 }
-                request.post('/roomapi/Login/Loginpwd', data, function (res) {
+
+                request.post('/roomapi/Login/registered', data, function (res) {
                     console.log('返回res', res);
-                    debugger
                     if (res.status == 200) {
                         if (res.data.code == 0) {
-                            localStorage.setItem('Authorization', res.data.data.token);
-                            self.$router.push('/')
+                            localStorage.setItem('Authorization',res.data.data.token);
+                            console.log('res.data',res.data);
+                            self.$router.push('/complate')
+                        }else{
+                            self.$toast.fail(res.data.message);
+
                         }
                     }
 
